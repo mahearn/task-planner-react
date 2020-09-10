@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import Task from './Task';
-import { TaskContext } from '../context/TaskContext';
+import { TaskProvider } from '../context/TaskProvider';
 
-const Tasks = () => {
-  const { task } = useContext(TaskContext);
-  const [tasks, setTasks] = task;
+const Tasks = (props) => {
+  const context = useContext(TaskProvider);
+  const [state, setState] = useState();
 
   return (
     <ul>
-      {tasks.map((task) => (
+      {state.tasks.map((task) => (
         <Task key={task.id} name={task.name} />
       ))}
     </ul>

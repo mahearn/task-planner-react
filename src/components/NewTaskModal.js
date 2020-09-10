@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 
-import { TaskContext } from '../context/TaskContext';
+import { TaskProvider } from '../context/TaskProvider';
 
 function NewTaskModal() {
-  const { modal } = useContext(TaskContext);
-  const [show, setShow] = modal;
+  const context = useContext(TaskProvider);
+  const [show, setShow] = useState();
 
   const handleClose = () => setShow(false);
 

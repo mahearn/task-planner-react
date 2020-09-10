@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
-import { TaskContext } from '../context/TaskContext';
+import { TaskProvider } from '../context/TaskProvider';
 
-// import NewTaskModal from './NewTaskModal';
+import NewTaskModal from './NewTaskModal';
 
 function NavBar() {
-  const { modal } = useContext(TaskContext);
-  const [show, setShow] = modal;
+  const context = useContext(TaskProvider);
+  const [show, setShow] = useState();
 
   const handleShow = () => setShow(true);
 
