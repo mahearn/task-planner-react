@@ -1,18 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Task from './Task';
-import { TaskContext } from '../context/TaskContext';
+import Context from '../context/Context';
 
-const Tasks = () => {
-  const { task } = useContext(TaskContext);
-  const [tasks, setTasks] = task;
+function Tasks() {
+  const { state, actions } = useContext(Context);
 
-  return (
-    <ul>
-      {tasks.map((task) => (
-        <Task key={task.id} name={task.name} />
-      ))}
-    </ul>
-  );
-};
+  if (state.tasks.length) {
+    return (
+      <div className="task-list">
+        {state.tasks.map((task) => (
+          <Task key={task.id} name={task.name} description={task.description} />
+        ))}
+      </div>
+    );
+  } else {
+    return <p>No tasks yet. Why don't you add one?</p>;
+  }
+}
 
 export default Tasks;

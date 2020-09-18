@@ -1,0 +1,12 @@
+.task-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-list {
+  justify-content: space-evenly;
+}
+
+.task-list-item {
+  background-color: grey;
+}

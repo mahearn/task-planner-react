@@ -1,16 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 
-import { TaskContext } from '../context/TaskContext';
+import Context from '../context/Context';
 
-function NewTaskModal() {
-  const { modal } = useContext(TaskContext);
-  const [show, setShow] = modal;
+function NewTaskModal(props) {
+  const { state, actions } = useContext(Context);
+  // let show;
 
-  const handleClose = () => setShow(false);
+  // useEffect(() => {
+  //   show = state.show;
+  // }, [state.show]);
+
+  function handleClose() {
+    actions({ type: 'TOGGLE_MODAL', payload: { ...state, show: false } });
+  }
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={props.show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Task Planner</Modal.Title>
       </Modal.Header>

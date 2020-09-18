@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
-import { TaskContext } from '../context/TaskContext';
 
-// import NewTaskModal from './NewTaskModal';
+import NewTaskModal from './NewTaskModal';
+import Context from '../context/Context';
 
 function NavBar() {
-  const { modal } = useContext(TaskContext);
-  const [show, setShow] = modal;
+  const { state, actions } = useContext(Context);
 
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    actions({ type: 'TOGGLE_MODAL', payload: { ...state, show: true } });
+  };
 
   return (
     <Navbar bg="light" expand="lg">
@@ -21,6 +22,7 @@ function NavBar() {
           </Button>
         </Nav>
       </Navbar.Collapse>
+      <NewTaskModal show={state.show} />
     </Navbar>
   );
 }

@@ -1,6 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Context from './context/Context';
+import GlobalState from './context/GlobalState';
 import App from './components/App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Index = () => {
+  const store = GlobalState();
+  return (
+    <Context.Provider value={store}>
+      <App />
+    </Context.Provider>
+  );
+};
+
+ReactDOM.render(<Index />, document.getElementById('root'));
