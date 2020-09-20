@@ -7,17 +7,16 @@ import NewTaskModal from './NewTaskModal';
 
 import '../../scss/main.scss';
 
-function App(props) {
+function App() {
   const { state, actions } = useContext(Context);
-  let taskList = [];
+  let taskList;
 
   useEffect(() => {
     const fetchTasks = () => {
       taskList = JSON.parse(localStorage.getItem('tasks')) || [];
-      // console.log(taskList);
       actions({
         type: 'SET_ALL_TASKS',
-        payload: { ...state, tasks: taskList, show: true },
+        payload: { ...state, tasks: taskList },
       });
     };
 
@@ -28,6 +27,7 @@ function App(props) {
     <>
       <NavBar />
       <Tasks />
+      <NewTaskModal />
     </>
   );
 }

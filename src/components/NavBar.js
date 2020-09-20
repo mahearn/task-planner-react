@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 
-import NewTaskModal from './NewTaskModal';
 import Context from '../context/Context';
 
 function NavBar() {
@@ -22,7 +21,6 @@ function NavBar() {
           </Button>
         </Nav>
       </Navbar.Collapse>
-      <NewTaskModal show={state.show} />
     </Navbar>
   );
 }

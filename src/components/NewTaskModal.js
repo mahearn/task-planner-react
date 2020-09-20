@@ -1,22 +1,35 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 
 import Context from '../context/Context';
 
-function NewTaskModal(props) {
+function NewTaskModal() {
   const { state, actions } = useContext(Context);
-  // let show;
-
-  // useEffect(() => {
-  //   show = state.show;
-  // }, [state.show]);
 
   function handleClose() {
     actions({ type: 'TOGGLE_MODAL', payload: { ...state, show: false } });
   }
 
+  function handleSaveTask(e) {
+    let id = `task${state.currentId++}`;
+    let name = document.querySelector('#taskName').value;
+    let description = document.querySelector('#taskDescription').value;
+    let assignTo = document.querySelector('#taskAssignTo').value;
+    let dueDate = document.querySelector('#taskDueDate').value;
+    let status = document.querySelector('#taskStatus').value;
+
+    actions({
+      type: 'ADD_TASK',
+      payload: {
+        ...state,
+        currentId: state.currentId++,
+        tasks: { id, name, description, assignTo, dueDate, status },
+      },
+    });
+  }
+
   return (
-    <Modal show={props.show} onHide={handleClose}>
+    <Modal show={state.show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Task Planner</Modal.Title>
       </Modal.Header>
@@ -36,7 +49,7 @@ function NewTaskModal(props) {
             />
           </Form.Group>
 
-          <Form.Group controlId="taskAssignedTo">
+          <Form.Group controlId="taskAssignTo">
             <Form.Label>
               Assigned to <span className="mandatory-flag">*</span>
             </Form.Label>
@@ -82,7 +95,9 @@ function NewTaskModal(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="success">Save changes</Button>
+          <Button variant="success" onClick={handleSaveTask}>
+            Save changes
+          </Button>
         </Modal.Footer>
       </Form>
     </Modal>
