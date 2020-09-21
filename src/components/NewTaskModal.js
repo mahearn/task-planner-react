@@ -17,13 +17,15 @@ function NewTaskModal() {
     let assignTo = document.querySelector('#taskAssignTo').value;
     let dueDate = document.querySelector('#taskDueDate').value;
     let status = document.querySelector('#taskStatus').value;
-
+    let taskList = state.tasks || [];
+    debugger;
+    taskList.push({ id, name, description, assignTo, dueDate, status });
     actions({
       type: 'ADD_TASK',
       payload: {
         ...state,
         currentId: state.currentId++,
-        tasks: { id, name, description, assignTo, dueDate, status },
+        tasks: taskList,
       },
     });
   }

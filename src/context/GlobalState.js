@@ -9,10 +9,12 @@ export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 export const GET_SHOW = 'GET_SHOW';
 
 export default function GlobalState() {
+  const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  const savedCurId = Number(localStorage.getItem('currentId')) || 1;
   const [state, setState] = useState({
     show: false,
-    currentId: 1,
-    tasks: [{}],
+    currentId: savedCurId,
+    tasks: savedTasks,
   });
 
   const actions = (action) => {

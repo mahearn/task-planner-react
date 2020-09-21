@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Task from './Task';
 import Context from '../context/Context';
 
@@ -9,7 +9,14 @@ function Tasks() {
     return (
       <div className="task-list">
         {state.tasks.map((task) => (
-          <Task key={task.id} name={task.name} description={task.description} />
+          <Task
+            key={task.id}
+            name={task.name}
+            description={task.description}
+            assignTo={task.assignTo}
+            dueDate={task.dueDate}
+            status={task.status}
+          />
         ))}
       </div>
     );
