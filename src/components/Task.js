@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Card } from 'react-bootstrap';
 
+import Context from '../context/Context';
+
 const Task = ({ id, name, description, assignTo, dueDate, status }) => {
+  const { state, actions } = useContext(Context);
+
   const handleEditClick = (e) => {
-    // const editId = e.target.classList('id');
-    // console.log(editId);
+    const id = e.target.getAttribute('data-editid');
   };
 
   const handleDeleteClick = (e) => {
-    // const deleteId = e.target.dataset.deleteid;
-    // console.log(deleteId);
+    const id = e.target.getAttribute('data-deleteid');
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    let newTasks = tasks.filter((task) => task.id !== id);
+
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
+
+    actions({
+      type: 'DELETE_TASK',
+      payload: { ...state, tasks: newTasks },
+    });
   };
 
   return (
@@ -17,7 +28,7 @@ const Task = ({ id, name, description, assignTo, dueDate, status }) => {
       <Card.Body>
         <div className="fa-pull-right">
           <i
-            className={`fa fa-edit ${id}`}
+            className="fa fa-edit"
             aria-hidden="true"
             data-editid={id}
             onClick={handleEditClick}
@@ -29,9 +40,8 @@ const Task = ({ id, name, description, assignTo, dueDate, status }) => {
             onClick={handleDeleteClick}
           ></i>
         </div>
+        <Card.Text>Id: {id}</Card.Text>
         <Card.Title>{name}</Card.Title>
-        <Card.Text>{id}</Card.Text>
-        <Card.Text>{description}</Card.Text>
         <Card.Text>{description}</Card.Text>
         <Card.Text>{assignTo}</Card.Text>
         <Card.Text>{dueDate}</Card.Text>

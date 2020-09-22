@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const GET_TASKLIST = 'GET_TASKLIST';
+export const SET_TASKLIST = 'SET_TASKLIST';
 export const GET_SHOW = 'GET_SHOW';
 export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
@@ -22,16 +22,16 @@ export default function GlobalState() {
     switch (type) {
       case GET_SHOW:
         return state;
-      case GET_TASKLIST:
+      case SET_TASKLIST:
         return setState(payload);
       case ADD_TASK:
         localStorage.setItem('currentId', payload.currentId);
         localStorage.setItem('tasks', JSON.stringify(payload.tasks));
         return setState(payload);
       case DELETE_TASK:
-        return null;
+        return setState(payload);
       case UPDATE_TASK:
-        return null;
+        return setState(payload);
       case TOGGLE_MODAL:
         return setState(payload);
       default:

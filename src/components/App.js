@@ -22,7 +22,7 @@ function App() {
     };
 
     fetchTasks();
-  }, [state.currentId]);
+  }, []);
 
   return (
     <>
