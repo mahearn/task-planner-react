@@ -9,19 +9,20 @@ import '../../scss/main.scss';
 
 function App() {
   const { state, actions } = useContext(Context);
-  let taskList;
 
   useEffect(() => {
+    // console.log(state.currentId);
     const fetchTasks = () => {
-      taskList = JSON.parse(localStorage.getItem('tasks')) || [];
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      const currentId = Number(localStorage.getItem('currentId')) || 1;
       actions({
-        type: 'SET_ALL_TASKS',
-        payload: { ...state, tasks: taskList },
+        type: 'SET_TASKLIST',
+        payload: { ...state, tasks, currentId },
       });
     };
 
     fetchTasks();
-  }, []);
+  }, [state.currentId]);
 
   return (
     <>

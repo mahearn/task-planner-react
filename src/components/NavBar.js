@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Navbar, Nav } from 'react-bootstrap';
 
 import Context from '../context/Context';
 
@@ -7,6 +7,7 @@ function NavBar() {
   const { state, actions } = useContext(Context);
 
   const handleShow = () => {
+    console.log(state.currentId);
     actions({ type: 'TOGGLE_MODAL', payload: { ...state, show: true } });
   };
 
@@ -15,10 +16,8 @@ function NavBar() {
       <Navbar.Brand href="#home">Task Planner </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Button className="btn btn-success" onClick={handleShow}>
-            New Task
-          </Button>
+        <Nav className="ml-auto">
+          <i className="fa fa-plus" aria-hidden="true" onClick={handleShow}></i>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

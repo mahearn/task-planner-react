@@ -21,7 +21,11 @@ function Tasks() {
       </div>
     );
   } else {
-    return <p>No tasks yet. Why don't you add one?</p>;
+    return (
+      <div className="text-center">
+        No tasks yet. Click the plus button to add one.
+      </div>
+    );
   }
 }
 

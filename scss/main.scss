@@ -1,1 +1,15 @@
-@import '_dashboard.scss';
+@import '_task.scss';
+
+.fa-plus {
+  color: green;
+  font-size: 2rem;
+}
+.fa-edit {
+  color: green;
+  font-size: 1.5rem;
+  margin-right: 20px;
+}
+.fa-trash {
+  color: red;
+  font-size: 1.5rem;
+}

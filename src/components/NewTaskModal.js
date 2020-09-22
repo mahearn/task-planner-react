@@ -6,6 +6,9 @@ import Context from '../context/Context';
 function NewTaskModal() {
   const { state, actions } = useContext(Context);
 
+  // console.log('curr id from state: ' + state.currentId);
+  // console.log('curr id from ls: ' + localStorage.getItem('currentId'));
+
   function handleClose() {
     actions({ type: 'TOGGLE_MODAL', payload: { ...state, show: false } });
   }
@@ -18,14 +21,14 @@ function NewTaskModal() {
     let dueDate = document.querySelector('#taskDueDate').value;
     let status = document.querySelector('#taskStatus').value;
     let taskList = state.tasks || [];
-    debugger;
     taskList.push({ id, name, description, assignTo, dueDate, status });
+
     actions({
       type: 'ADD_TASK',
       payload: {
         ...state,
-        currentId: state.currentId++,
         tasks: taskList,
+        show: false,
       },
     });
   }
