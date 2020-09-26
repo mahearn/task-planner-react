@@ -10,6 +10,7 @@ function Tasks() {
       <div className="task-list">
         {state.tasks.map((task) => (
           <Task
+            key={task.id}
             id={task.id}
             name={task.name}
             description={task.description}

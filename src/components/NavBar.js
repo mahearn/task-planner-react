@@ -6,9 +6,15 @@ import Context from '../context/Context';
 function NavBar() {
   const { state, actions } = useContext(Context);
 
+  //ensure that cannot open a task in edit mode via this add button
+  state.isEditMode = false;
+  const msg = state.errorMessages.addBtn;
+
   const handleShow = () => {
-    console.log(state.currentId);
-    actions({ type: 'TOGGLE_MODAL', payload: { ...state, show: true } });
+    actions({ type: 'TOGGLE_MODAL', payload: { ...state, isShowModal: true } });
+  };
+  const handleEditMode = () => {
+    document.querySelector('.alert-warning');
   };
 
   return (
@@ -17,7 +23,11 @@ function NavBar() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <i className="fa fa-plus" aria-hidden="true" onClick={handleShow}></i>
+          <i
+            className="fa fa-plus"
+            aria-hidden="true"
+            onClick={!state.isEditMode ? handleShow : handleEditMode}
+          ></i>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
