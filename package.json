@@ -14,7 +14,6 @@
   "author": "Michael Ahearn",
   "license": "MIT",
   "dependencies": {
-    "@hookeasy/use-confirm": "^1.0.0",
     "bootstrap": "^4.5.2",
     "react": "^16.12.0",
     "react-bootstrap": "^1.3.0",

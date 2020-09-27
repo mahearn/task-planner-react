@@ -6,7 +6,6 @@ import Context from '../context/Context';
 function NewTaskModal() {
   const { state, actions } = useContext(Context);
   const taskToUpdate = state.currentIndexValue;
-  // let taskIndex = state.currentIndex;
 
   function handleClose() {
     actions({

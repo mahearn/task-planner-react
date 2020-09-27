@@ -1,6 +1,5 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import { Card } from 'react-bootstrap';
-import useConfirm from '@hookeasy/use-confirm';
 
 import Context from '../context/Context';
 
@@ -50,7 +49,10 @@ const Task = ({ id, name, description, assignTo, dueDate, status }) => {
             className="fa fa-trash"
             aria-hidden="true"
             data-deleteid={id}
-            onClick={handleDeleteClick}
+            onClick={(e) => {
+              if (window.confirm('Are you sure you wish to delete this item?'))
+                handleDeleteClick(e);
+            }}
           ></i>
         </div>
         <Card.Text>
